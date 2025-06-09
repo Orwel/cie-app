@@ -119,7 +119,7 @@ const PropertyList = () => {
             Conoce Cielocanto
           </h2>
           <p className="text-lg text-gray-300 max-w-4xl mx-auto leading-relaxed">
-            Consulta el precio y la disponibilidad de las propiedades haciendo click en la imagen de tu interés, la cual te llevará a la página de Airbnb. Si es de tu interés, deberás hacer la reserva directamente en Airbnb y/o contactarnos por WhatsApp. Únicamente se arrienda mediante Airbnb (nunca fuera de la plataforma). La estadías mínima es  de un mes.
+            Consulta el precio y la disponibilidad de las propiedades haciendo click en la imagen de tu interés, la cual te llevará a la página de Airbnb. Si es de tu interés, deberás hacer la reserva directamente en Airbnb y/o contactarnos por WhatsApp. Únicamente se arrienda mediante Airbnb (nunca fuera de la plataforma). La estadía mínima es  de un mes.
           </p>
         </div>
         
