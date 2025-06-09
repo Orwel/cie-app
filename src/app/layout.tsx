@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import GoogleAnalytics from "./components/GoogleAnalytics";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -37,6 +38,7 @@ export default function RootLayout({
   return (
     <html lang="es">
       <head>
+        <GoogleAnalytics />
         <link rel="icon" type="image/svg+xml" href="/Cielocanto-favicon.svg" />
         <link rel="shortcut icon" type="image/svg+xml" href="/Cielocanto-favicon.svg" />
       </head>

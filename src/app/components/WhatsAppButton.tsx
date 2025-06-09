@@ -1,10 +1,16 @@
 'use client';
 
+import { useAnalytics } from '../../hooks/useAnalytics';
+
 const WhatsAppButton = () => {
   const phoneNumber = "573113463082"; // Número real de WhatsApp
   const message = "Hola, quisiera rentar un apartaestudio en Bogotá.";
+  const { trackWhatsAppClick } = useAnalytics();
 
   const handleClick = () => {
+    // Track the WhatsApp click event
+    trackWhatsAppClick();
+    
     const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
     window.open(url, '_blank');
   };

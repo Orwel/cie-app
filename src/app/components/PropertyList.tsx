@@ -52,42 +52,24 @@ const PropertyList = () => {
     `;
     document.head.appendChild(style);
 
-    // Función para centrar los embeds después de que se carguen
-    const centerEmbeds = () => {
-      setTimeout(() => {
-        const embeds = document.querySelectorAll('.airbnb-embed-frame');
-        embeds.forEach(embed => {
-          const iframe = embed.querySelector('iframe');
-          if (iframe) {
-            const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document;
-            if (iframeDoc) {
-              // Inyectar estilos dentro del iframe
-              const iframeStyle = iframeDoc.createElement('style');
-              iframeStyle.textContent = `
-                body {
-                  display: flex !important;
-                  justify-content: center !important;
-                  align-items: center !important;
-                  height: 100vh !important;
-                  margin: 0 !important;
-                  padding: 0 !important;
-                }
-                * {
-                  text-align: center !important;
-                }
-              `;
-              iframeDoc.head.appendChild(iframeStyle);
-            }
-          }
-        });
-      }, 2000);
+    // Función simple para manejar la carga de embeds sin acceso cross-origin
+    const handleEmbedLoad = () => {
+      // Solo aplicamos estilos externos sin acceder al contenido del iframe
+      const embeds = document.querySelectorAll('.airbnb-embed-frame');
+      embeds.forEach(embed => {
+        // Aplicar estilos solo al contenedor, no al iframe interno
+        const embedElement = embed as HTMLElement;
+        embedElement.style.border = '1px solid #e5e7eb';
+        embedElement.style.borderRadius = '12px';
+        embedElement.style.overflow = 'hidden';
+      });
     };
 
-    // Ejecutar centrado después de un delay
-    centerEmbeds();
+    // Ejecutar después de un delay para que los embeds se carguen
+    setTimeout(handleEmbedLoad, 1000);
     
-    // También ejecutar cuando se cargue la página
-    script.onload = centerEmbeds;
+    // También ejecutar cuando se cargue el script
+    script.onload = handleEmbedLoad;
 
     return () => {
       const existingScript = document.querySelector('script[src="https://www.airbnb.com.co/embeddable/airbnb_jssdk"]');
