@@ -9,7 +9,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Cielocanto | Vivienda",
+  title: "Vivienda | Bogotá",
   description: "Apartaestudios en Bogotá, sector de Chapinero",
   icons: [
     {
