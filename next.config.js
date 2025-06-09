@@ -1,13 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  images: {
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'placehold.co',
-      },
-    ],
-  },
+  // Los embeds de Airbnb manejan sus propias imágenes
+  // No necesitamos configuración especial de imágenes remotas
 };
 
 module.exports = nextConfig; 
