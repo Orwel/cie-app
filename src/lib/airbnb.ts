@@ -13,7 +13,9 @@ export async function getAirbnbProperties(): Promise<Property[]> {
   const userId = process.env.AIRBNB_USER_ID;
 
   if (!apiKey || !apiSecret || !userId) {
-    throw new Error('Faltan las credenciales de la API de Airbnb');
+    // Durante el build, retornamos un array vacío en lugar de lanzar error
+    console.warn('Credenciales de Airbnb no configuradas. Retornando datos vacíos.');
+    return [];
   }
 
   // Aquí iría la lógica para hacer la petición a la API de Airbnb

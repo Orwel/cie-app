@@ -11,35 +11,128 @@ const PropertyList = () => {
     script.async = true;
     document.head.appendChild(script);
 
-    // Estilos agresivos para forzar el centrado
+    // Función para interceptar clics y redirigir a /rooms/
+    const interceptClicks = () => {
+      const embeds = document.querySelectorAll('.airbnb-embed-frame');
+      embeds.forEach(embed => {
+        // Remover listeners previos para evitar duplicados
+        embed.removeEventListener('click', handleEmbedClick);
+        embed.addEventListener('click', handleEmbedClick);
+        
+        // También interceptar clics en enlaces dentro del embed
+        const links = embed.querySelectorAll('a');
+        links.forEach(link => {
+          link.removeEventListener('click', handleLinkClick);
+          link.addEventListener('click', handleLinkClick);
+        });
+      });
+    };
+
+    const handleEmbedClick = (e: Event) => {
+      e.preventDefault();
+      e.stopPropagation();
+      
+      const embed = e.currentTarget as HTMLElement;
+      const propertyId = embed.getAttribute('data-id');
+      
+      if (propertyId) {
+        const url = `https://www.airbnb.com.co/rooms/${propertyId}?guests=1&adults=1&s=66&source=embed_widget`;
+        window.open(url, '_blank');
+      }
+    };
+
+    const handleLinkClick = (e: Event) => {
+      e.preventDefault();
+      e.stopPropagation();
+      
+      const link = e.currentTarget as HTMLAnchorElement;
+      let href = link.getAttribute('href') || '';
+      
+      // Cambiar /room/ por /rooms/ en la URL
+      if (href.includes('/room/')) {
+        href = href.replace('/room/', '/rooms/');
+        window.open(href, '_blank');
+      }
+    };
+
+    // Interceptar clics inmediatamente
+    interceptClicks();
+
+    // Volver a interceptar después de que el SDK se cargue
+    script.onload = () => {
+      setTimeout(() => {
+        interceptClicks();
+        
+        // Usar MutationObserver para detectar cuando se agregan nuevos elementos
+        const observer = new MutationObserver(() => {
+          interceptClicks();
+        });
+        
+        observer.observe(document.body, {
+          childList: true,
+          subtree: true,
+          attributes: true,
+          attributeFilter: ['href']
+        });
+
+        // Guardar el observer para limpiarlo después
+        (window as any).airbnbObserver = observer;
+      }, 1000);
+    };
+
+    // Estilos agresivos para eliminar barras de scroll y contenedores fijos
     const style = document.createElement('style');
     style.textContent = `
       .airbnb-embed-frame {
-        border-radius: 12px !important;
-        overflow: hidden !important;
+        border: none !important;
+        background: transparent !important;
+        overflow: visible !important;
+        cursor: pointer !important;
       }
       .airbnb-embed-frame iframe {
         border: none !important;
-        border-radius: 12px !important;
-        overflow: hidden !important;
         width: 100% !important;
         height: 100% !important;
+        overflow: visible !important;
+        pointer-events: none !important;
       }
-      /* Ocultar el corazón/wishlist */
-      .airbnb-embed-frame label[for*="wishlist"],
-      .airbnb-embed-frame input[id*="wishlist"],
-      .airbnb-embed-frame [class*="_1figzu9"],
-      .airbnb-embed-frame [class*="_1dp4576"] {
-        display: none !important;
-        visibility: hidden !important;
+      .airbnb-embed-frame a {
+        cursor: pointer !important;
       }
-      /* Ocultar barras de scroll */
-      .airbnb-embed-frame *::-webkit-scrollbar {
-        display: none !important;
-      }
-      .airbnb-embed-frame * {
+      /* Ocultar barras de scroll específicamente */
+      .airbnb-embed-frame *,
+      .airbnb-embed-frame iframe * {
         scrollbar-width: none !important;
         -ms-overflow-style: none !important;
+      }
+      .airbnb-embed-frame::-webkit-scrollbar,
+      .airbnb-embed-frame *::-webkit-scrollbar,
+      .airbnb-embed-frame iframe::-webkit-scrollbar,
+      .airbnb-embed-frame iframe *::-webkit-scrollbar {
+        display: none !important;
+        width: 0 !important;
+        height: 0 !important;
+        background: transparent !important;
+      }
+      /* Ocultar el corazón/wishlist de manera más agresiva */
+      .airbnb-embed-frame label[for*="wishlist"],
+      .airbnb-embed-frame input[id*="wishlist"],
+      .airbnb-embed-frame button[aria-label*="wishlist"],
+      .airbnb-embed-frame button[aria-label*="Wishlist"],
+      .airbnb-embed-frame button[aria-label*="lista de deseos"],
+      .airbnb-embed-frame button[aria-label*="favoritos"],
+      .airbnb-embed-frame [class*="_1figzu9"],
+      .airbnb-embed-frame [class*="_1dp4576"],
+      .airbnb-embed-frame [class*="wishlist"],
+      .airbnb-embed-frame [class*="heart"],
+      .airbnb-embed-frame [class*="favorite"],
+      .airbnb-embed-frame [role="button"][aria-label*="heart"],
+      .airbnb-embed-frame svg[class*="heart"],
+      .airbnb-embed-frame [data-testid*="wishlist"],
+      .airbnb-embed-frame [data-testid*="heart"] {
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
       }
       /* Ocultar botones de navegación */
       .airbnb-embed-frame button[aria-label*="Anterior"],
@@ -52,25 +145,6 @@ const PropertyList = () => {
     `;
     document.head.appendChild(style);
 
-    // Función simple para manejar la carga de embeds sin acceso cross-origin
-    const handleEmbedLoad = () => {
-      // Solo aplicamos estilos externos sin acceder al contenido del iframe
-      const embeds = document.querySelectorAll('.airbnb-embed-frame');
-      embeds.forEach(embed => {
-        // Aplicar estilos solo al contenedor, no al iframe interno
-        const embedElement = embed as HTMLElement;
-        embedElement.style.border = '1px solid #e5e7eb';
-        embedElement.style.borderRadius = '12px';
-        embedElement.style.overflow = 'hidden';
-      });
-    };
-
-    // Ejecutar después de un delay para que los embeds se carguen
-    setTimeout(handleEmbedLoad, 1000);
-    
-    // También ejecutar cuando se cargue el script
-    script.onload = handleEmbedLoad;
-
     return () => {
       const existingScript = document.querySelector('script[src="https://www.airbnb.com.co/embeddable/airbnb_jssdk"]');
       if (existingScript) {
@@ -79,6 +153,22 @@ const PropertyList = () => {
       if (style.parentNode) {
         style.parentNode.removeChild(style);
       }
+      
+      // Limpiar el observer
+      if ((window as any).airbnbObserver) {
+        (window as any).airbnbObserver.disconnect();
+        delete (window as any).airbnbObserver;
+      }
+      
+      // Remover event listeners
+      const embeds = document.querySelectorAll('.airbnb-embed-frame');
+      embeds.forEach(embed => {
+        embed.removeEventListener('click', handleEmbedClick);
+        const links = embed.querySelectorAll('a');
+        links.forEach(link => {
+          link.removeEventListener('click', handleLinkClick);
+        });
+      });
     };
   }, []);
 
@@ -113,7 +203,7 @@ const PropertyList = () => {
   return (
     <section className="py-8 sm:py-10 md:py-12 px-4 sm:px-6 md:px-8 bg-black min-h-screen">
       <div className="max-w-7xl mx-auto">
-        {/* Header con nuevo texto */}
+        {/* Header */}
         <div className="text-center mb-8 sm:mb-12">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6">
             Conoce Cielocanto
@@ -123,63 +213,38 @@ const PropertyList = () => {
           </p>
         </div>
         
-        {/* Grid más grande - menos columnas, cards más grandes */}
+        {/* Grid con menos columnas para más espacio */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 md:gap-12">
           {airbnbEmbeds.map((property, index) => (
             <div
               key={property.id}
-              className="group relative bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 overflow-hidden border border-gray-100"
+              className="overflow-visible"
               style={{
                 animation: `fadeInUp 0.6s ease-out ${index * 0.1}s both`
               }}
             >
-              {/* Header centrado */}
-              <div className="p-6 pb-4 text-center">
-                <h3 className="text-xl sm:text-2xl font-bold text-gray-800 mb-3 leading-tight">
-                  {property.title}
-                </h3>
-                <div className="flex items-center justify-center text-gray-600 mb-4">
-                  <span className="text-red-500 mr-2">📍</span>
-                  <span className="text-base font-medium">{property.location}</span>
-                </div>
+              <div 
+                className="airbnb-embed-frame" 
+                data-id={property.id} 
+                data-view="home" 
+                data-hide-price="true"
+                style={{ 
+                  width: '450px',
+                  height: '300px',
+                  margin: 'auto',
+                  maxWidth: '100%'
+                }}
+              >
+                <a href={`https://es-l.airbnb.com/rooms/${property.id}?guests=1&adults=1&s=66&source=embed_widget`}>
+                  Ver en Airbnb
+                </a>
+                <a 
+                  href={`https://es-l.airbnb.com/rooms/${property.id}?guests=1&adults=1&s=66&source=embed_widget`} 
+                  rel="nofollow"
+                >
+                  {property.title} · {property.location}
+                </a>
               </div>
-              
-              {/* Embed centrado */}
-              <div className="px-6 pb-6">
-                                  <div className="relative overflow-hidden rounded-xl border border-gray-200 mx-auto" style={{ height: '400px', width: '100%' }}>
-                  <div 
-                    className="airbnb-embed-frame" 
-                    data-id={property.id} 
-                    data-view="home" 
-                    data-hide-price="false"
-                    style={{ 
-                      width: '450px', 
-                      height: '400px',
-                      position: 'absolute',
-                      top: '50%',
-                      left: '50%',
-                      transform: 'translate(-50%, -50%)',
-                      overflow: 'hidden'
-                    }}
-                  >
-                    <a 
-                      href={`https://es-l.airbnb.com/rooms/${property.id}?guests=1&adults=1&s=66&source=embed_widget`}
-                      className="flex items-center justify-center h-full bg-gradient-to-br from-blue-500 to-purple-600 text-white hover:from-blue-600 hover:to-purple-700 transition-all duration-300 group"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <div className="text-center">
-                        <div className="text-4xl mb-3">🏠</div>
-                        <div className="font-semibold text-xl mb-2">Ver en Airbnb</div>
-                        <div className="text-base opacity-90">Información completa y reservas</div>
-                      </div>
-                    </a>
-                  </div>
-                </div>
-              </div>
-
-              {/* Efecto hover */}
-              <div className="absolute inset-0 bg-gradient-to-t from-transparent to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-2xl"></div>
             </div>
           ))}
         </div>
