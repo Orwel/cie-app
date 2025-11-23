@@ -29,7 +29,7 @@ export default function Reservas() {
           </h1>
           <p className="text-lg sm:text-xl text-gray-300 max-w-3xl leading-relaxed mb-6 text-justify sm:text-left">
             Reserva tu espacio de tiempo en nuestras lavadoras disponibles. 
-            Selecciona un día en el calendario para ver los horarios disponibles.
+            Selecciona una lavadora y posteriormente, selecciona un día en el calendario para ver los horarios disponibles y las instrucciones de uso haciendo click en "Ver las instrucciones de uso".
           </p>
         </div>
 
