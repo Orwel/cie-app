@@ -382,8 +382,8 @@ export default function CalendarView({ onDateSelect }: CalendarViewProps) {
         startAccessor="start"
         endAccessor="end"
         style={{ 
-          height: isMobile ? 700 : 600,
-          minHeight: isMobile ? 700 : 500
+          height: isMobile ? 850 : 600,
+          minHeight: isMobile ? 850 : 500
         }}
         onSelectSlot={handleSelectSlot}
         selectable

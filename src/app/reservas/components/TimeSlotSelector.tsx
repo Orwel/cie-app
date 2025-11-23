@@ -198,7 +198,7 @@ export default function TimeSlotSelector({
                   </p>
                 </div>
               )}
-              <div className="grid grid-cols-6 sm:grid-cols-8 md:grid-cols-12 gap-2">
+              <div className="grid grid-cols-4 sm:grid-cols-8 md:grid-cols-12 gap-2">
                 {hours.map(hour => {
                   const hourStr = `${hour.toString().padStart(2, '0')}:00`;
                   const isOccupied = isSlotOccupied(hour, selectedMachine);
