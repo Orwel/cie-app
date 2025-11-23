@@ -43,3 +43,257 @@ body {
     overflow: hidden;
   }
 }
+
+/* Estilos para react-big-calendar */
+.rbc-calendar {
+  background-color: #111827;
+  color: white;
+}
+
+.rbc-header {
+  background-color: #1f2937;
+  border-bottom: 1px solid #374151;
+  color: white;
+  padding: 10px;
+}
+
+.rbc-today {
+  background-color: #fef3c7 !important; /* Amarillo claro para el día de hoy */
+}
+
+/* Texto del día de hoy - debe ser negro */
+.rbc-day-bg.rbc-today ~ .rbc-date-cell,
+.rbc-day-bg.rbc-today + .rbc-date-cell {
+  color: #000000 !important;
+}
+
+.rbc-day-bg.rbc-today ~ .rbc-date-cell a,
+.rbc-day-bg.rbc-today + .rbc-date-cell a {
+  color: #000000 !important;
+  font-weight: 600;
+}
+
+.rbc-off-range-bg {
+  background-color: #0f172a;
+}
+
+.rbc-date-cell {
+  color: white;
+}
+
+.rbc-day-bg {
+  border-color: #374151;
+}
+
+.rbc-toolbar {
+  background-color: #1f2937;
+  border-bottom: 1px solid #374151;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+/* Botones de navegación - texto blanco */
+.rbc-toolbar button {
+  color: white !important;
+  background-color: #374151;
+  border: 1px solid #4b5563;
+}
+
+.rbc-toolbar button:hover {
+  background-color: #4b5563;
+  color: white !important;
+}
+
+.rbc-toolbar button.rbc-active {
+  background-color: #3b82f6;
+  border-color: #2563eb;
+  color: white !important;
+}
+
+.rbc-toolbar-label {
+  color: white !important;
+}
+
+.rbc-month-view {
+  border-color: #374151;
+}
+
+.rbc-day-slot .rbc-time-slot {
+  border-top-color: #374151;
+}
+
+.rbc-current-time-indicator {
+  background-color: #ef4444;
+}
+
+/* Día seleccionado - fondo blanco */
+.rbc-day-bg.rbc-selected {
+  background-color: #ffffff !important;
+}
+
+/* Texto del día cuando está seleccionado - debe ser negro */
+.rbc-month-row .rbc-day-bg.rbc-selected ~ .rbc-date-cell,
+.rbc-month-row .rbc-day-bg.rbc-selected + .rbc-date-cell {
+  color: #000000 !important;
+}
+
+.rbc-month-row .rbc-day-bg.rbc-selected ~ .rbc-date-cell a,
+.rbc-month-row .rbc-day-bg.rbc-selected + .rbc-date-cell a {
+  color: #000000 !important;
+}
+
+/* Asegurar que los enlaces dentro de celdas seleccionadas sean negros */
+.rbc-day-bg.rbc-selected ~ .rbc-date-cell a,
+.rbc-day-bg.rbc-selected + .rbc-date-cell a {
+  color: #000000 !important;
+}
+
+/* Estilo adicional para cuando se selecciona un día completo */
+.rbc-month-row:has(.rbc-day-bg.rbc-selected) .rbc-date-cell {
+  color: #000000 !important;
+}
+
+.rbc-month-row:has(.rbc-day-bg.rbc-selected) .rbc-date-cell a {
+  color: #000000 !important;
+}
+
+/* Responsive - Mobile */
+@media (max-width: 640px) {
+  /* Toolbar responsive - apilar botones verticalmente */
+  .rbc-toolbar {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 8px !important;
+    padding: 8px !important;
+    align-items: stretch !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  
+  /* Forzar que todos los elementos hijos se apilen */
+  .rbc-toolbar > * {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  
+  .rbc-toolbar button {
+    font-size: 12px !important;
+    padding: 8px 12px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    display: block !important;
+  }
+  
+  /* Grupo de botones de navegación */
+  .rbc-toolbar button + button {
+    margin-top: 8px !important;
+  }
+  
+  .rbc-toolbar-label {
+    font-size: 14px !important;
+    margin: 4px 0 !important;
+    text-align: center !important;
+    width: 100% !important;
+    order: -1 !important; /* Mover el label al inicio */
+  }
+  
+  /* Estilos específicos para los grupos de botones */
+  .rbc-toolbar .rbc-btn-group {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    gap: 8px !important;
+  }
+  
+  .rbc-toolbar .rbc-btn-group button {
+    width: 100% !important;
+    margin: 0 !important;
+  }
+  
+  /* Celdas del calendario MUCHO más grandes en mobile */
+  .rbc-date-cell {
+    font-size: 16px !important;
+    padding: 8px 4px !important;
+    min-height: 70px !important;
+    line-height: 1.4 !important;
+  }
+  
+  .rbc-day-bg {
+    min-height: 80px !important;
+  }
+  
+  /* Headers de días más pequeños pero legibles */
+  .rbc-header {
+    font-size: 12px !important;
+    padding: 10px 4px !important;
+    font-weight: 600 !important;
+  }
+  
+  /* Eventos en mobile - emoji + nombre truncado */
+  .rbc-event {
+    font-size: 11px !important;
+    padding: 4px 6px !important;
+    line-height: 1.4 !important;
+    min-height: 24px !important;
+    margin-bottom: 2px !important;
+  }
+  
+  .rbc-event-content {
+    font-size: 11px !important;
+    padding: 0 !important;
+    text-align: left !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 4px !important;
+  }
+  
+  /* Ajustar altura del calendario en mobile */
+  .rbc-calendar {
+    font-size: 12px !important;
+  }
+  
+  .rbc-month-view {
+    min-height: 700px !important;
+  }
+  
+  /* Asegurar que los días no se vean apeñuscados - MUCHO más espacio */
+  .rbc-month-row {
+    min-height: 90px !important;
+  }
+  
+  /* Más espacio entre filas */
+  .rbc-month-view {
+    border-spacing: 2px !important;
+  }
+  
+  /* Día de hoy en mobile - texto negro */
+  .rbc-day-bg.rbc-today ~ .rbc-date-cell,
+  .rbc-day-bg.rbc-today + .rbc-date-cell {
+    color: #000000 !important;
+  }
+  
+  .rbc-day-bg.rbc-today ~ .rbc-date-cell a,
+  .rbc-day-bg.rbc-today + .rbc-date-cell a {
+    color: #000000 !important;
+    font-weight: 700 !important;
+  }
+}
+
+/* Estilos más específicos para días seleccionados */
+.rbc-month-row .rbc-day-bg.rbc-selected {
+  background-color: #ffffff !important;
+}
+
+.rbc-month-row .rbc-day-bg.rbc-selected ~ .rbc-date-cell,
+.rbc-month-row .rbc-day-bg.rbc-selected + .rbc-date-cell {
+  color: #000000 !important;
+}
+
+.rbc-month-row .rbc-day-bg.rbc-selected ~ .rbc-date-cell a,
+.rbc-month-row .rbc-day-bg.rbc-selected + .rbc-date-cell a {
+  color: #000000 !important;
+  font-weight: 600;
+}
