@@ -387,6 +387,8 @@ export default function CalendarView({ onDateSelect }: CalendarViewProps) {
         }}
         onSelectSlot={handleSelectSlot}
         selectable
+        longPressThreshold={10}
+        onDrillDown={(date) => onDateSelect(date)}
         onNavigate={handleNavigate}
         defaultDate={new Date()}
         defaultView="month"
