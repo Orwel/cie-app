@@ -158,7 +158,7 @@ export async function GET(request: NextRequest) {
         *,
         meter_group:meter_groups(*),
         charges:invoice_charges(*),
-        allocations:invoice_allocations(*)
+        allocations:invoice_allocations(*, unit:units(*))
       `)
       .order('period', { ascending: false });
 

@@ -6,14 +6,14 @@ import WhatsAppButton from '@/app/components/WhatsAppButton';
 import MeterReadingForm from '@/app/components/servicios/MeterReadingForm';
 import InvoiceUploadForm from '@/app/components/servicios/InvoiceUploadForm';
 import { getPeriodKey, formatPeriod, formatCurrency } from '@/lib/servicios-utils';
-import type { MeterGroup, MeterReading, UtilityInvoice } from '@/lib/supabase-types';
+import type { MeterGroup, MeterReading, UtilityInvoiceWithDetails } from '@/lib/supabase-types';
 
 export default function AdminServiciosPage() {
   const [meterGroups, setMeterGroups] = useState<MeterGroup[]>([]);
   const [selectedMeterGroupId, setSelectedMeterGroupId] = useState<string>('');
   const [selectedPeriod, setSelectedPeriod] = useState<string>(getPeriodKey(new Date()));
   const [readings, setReadings] = useState<MeterReading[]>([]);
-  const [invoice, setInvoice] = useState<UtilityInvoice | null>(null);
+  const [invoice, setInvoice] = useState<UtilityInvoiceWithDetails | null>(null);
   const [loading, setLoading] = useState(true);
   const [calculating, setCalculating] = useState(false);
   const [calculationResult, setCalculationResult] = useState<any>(null);

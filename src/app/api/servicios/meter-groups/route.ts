@@ -7,14 +7,26 @@ export async function GET(request: NextRequest) {
     const code = searchParams.get('code');
     const unitId = searchParams.get('unitId');
 
+    // Si hay code, buscar un solo resultado
+    if (code) {
+      const { data, error } = await supabase
+        .from('meter_groups')
+        .select('*')
+        .eq('code', code)
+        .single();
+
+      if (error) {
+        throw error;
+      }
+
+      return NextResponse.json({ success: true, data });
+    }
+
+    // Construir query base
     let query = supabase
       .from('meter_groups')
       .select('*')
       .order('created_at', { ascending: true });
-
-    if (code) {
-      query = query.eq('code', code).single();
-    }
 
     if (unitId) {
       // Obtener meter_groups asociados a una unit específica

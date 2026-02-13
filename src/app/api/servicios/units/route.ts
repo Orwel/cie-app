@@ -10,9 +10,17 @@ export async function GET(request: NextRequest) {
     let query = supabase.from('units').select('*');
 
     if (code) {
-      query = query.eq('code', code).single();
+      const { data, error } = await query.eq('code', code).single();
+      if (error) {
+        throw error;
+      }
+      return NextResponse.json({ success: true, data });
     } else if (id) {
-      query = query.eq('id', id).single();
+      const { data, error } = await query.eq('id', id).single();
+      if (error) {
+        throw error;
+      }
+      return NextResponse.json({ success: true, data });
     }
 
     const { data, error } = await query;
