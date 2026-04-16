@@ -48,8 +48,11 @@ export default function LocalPage() {
             🏆 Local Premium - Historial Comprobado de Éxito
           </h1>
           <p className="text-base sm:text-lg md:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed px-2">
-            Espacio estratégico de 122m² que fue el hogar de BBC (Bogotá Beer Company) por 10 años consecutivos. 
-            Disponible a partir del 31 de mayo. Un local con historial de éxito, perfecto para marcas importantes que buscan un espacio premium.
+            <span className="block text-white font-semibold mb-2 sm:mb-3">
+              Se arrienda junto al local de Papadictos: ambos frentes conforman un solo local de 122m² —no son dos arriendos aparte, es una misma unidad comercial.
+            </span>
+            Ese espacio de 122m² fue el hogar de BBC (Bogotá Beer Company) por 10 años consecutivos. Papadictos desocupa el 31 de mayo tras tres años en el punto; a partir de esa fecha queda disponible el local completo. 
+            Un historial de éxito, perfecto para marcas importantes que buscan un espacio premium.
           </p>
         </div>
 
@@ -58,7 +61,7 @@ export default function LocalPage() {
           <div className="bg-gray-900 rounded-lg p-3 sm:p-4 md:p-6 border border-gray-800">
             <div className="text-xl sm:text-2xl md:text-3xl mb-1 sm:mb-2">📏</div>
             <div className="text-white font-semibold text-base sm:text-lg md:text-xl mb-1">122m²</div>
-            <div className="text-gray-400 text-xs sm:text-sm md:text-base">Área total</div>
+            <div className="text-gray-400 text-xs sm:text-sm md:text-base">Área total (ambos frentes)</div>
           </div>
           
           <div className="bg-gray-900 rounded-lg p-3 sm:p-4 md:p-6 border border-gray-800">
@@ -135,7 +138,11 @@ export default function LocalPage() {
               <span className="text-xl sm:text-2xl mr-3 sm:mr-4 flex-shrink-0">🏆</span>
               <div>
                 <h3 className="text-white font-semibold text-base sm:text-lg mb-1">Historial Comprobado de Éxito</h3>
-                <p className="text-gray-400 text-sm sm:text-base">10 años consecutivos arrendado a BBC (Bogotá Beer Company), una de las marcas más reconocidas del país. Un espacio que ha demostrado su potencial comercial.</p>
+                <p className="text-gray-400 text-sm sm:text-base">
+                  10 años consecutivos arrendado a BBC (Bogotá Beer Company), una de las marcas más reconocidas del país. 
+                  El arriendo actual es del local unificado de 122m² que se ofrece junto al de Papadictos: ambos frentes son el mismo local, una sola superficie. 
+                  Papadictos lleva tres años en su tramo y desocupa el 31 de mayo; así se suma otro caso de marca que consolidó operación en este mismo frente.
+                </p>
               </div>
             </div>
             
