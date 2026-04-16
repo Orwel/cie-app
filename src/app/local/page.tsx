@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
-import Header from '../components/Header';
 import LocalWhatsAppButton from './components/LocalWhatsAppButton';
 
 const images = [
@@ -42,8 +41,6 @@ export default function LocalPage() {
 
   return (
     <main className="min-h-screen bg-black">
-      <Header />
-      
       <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-6 sm:py-8 md:py-12">
         {/* Título y descripción principal */}
         <div className="text-center mb-6 sm:mb-8 md:mb-12 px-2">
@@ -51,8 +48,8 @@ export default function LocalPage() {
             🏆 Local Premium - Historial Comprobado de Éxito
           </h1>
           <p className="text-base sm:text-lg md:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed px-2">
-            Espacio estratégico de 70m² que fue el hogar de BBC (Bogotá Beer Company) por 10 años consecutivos. 
-            Un local con historial de éxito, perfecto para marcas importantes que buscan un espacio premium.
+            Espacio estratégico de 122m² que fue el hogar de BBC (Bogotá Beer Company) por 10 años consecutivos. 
+            Disponible a partir del 31 de mayo. Un local con historial de éxito, perfecto para marcas importantes que buscan un espacio premium.
           </p>
         </div>
 
@@ -60,25 +57,25 @@ export default function LocalPage() {
         <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6 mb-6 sm:mb-8 md:mb-12">
           <div className="bg-gray-900 rounded-lg p-3 sm:p-4 md:p-6 border border-gray-800">
             <div className="text-xl sm:text-2xl md:text-3xl mb-1 sm:mb-2">📏</div>
-            <div className="text-white font-semibold text-base sm:text-lg md:text-xl mb-1">70m²</div>
+            <div className="text-white font-semibold text-base sm:text-lg md:text-xl mb-1">122m²</div>
             <div className="text-gray-400 text-xs sm:text-sm md:text-base">Área total</div>
           </div>
           
           <div className="bg-gray-900 rounded-lg p-3 sm:p-4 md:p-6 border border-gray-800">
             <div className="text-xl sm:text-2xl md:text-3xl mb-1 sm:mb-2">↔️</div>
-            <div className="text-white font-semibold text-base sm:text-lg md:text-xl mb-1">3.5m</div>
+            <div className="text-white font-semibold text-base sm:text-lg md:text-xl mb-1">5.7m</div>
             <div className="text-gray-400 text-xs sm:text-sm md:text-base">Frente</div>
           </div>
           
           <div className="bg-gray-900 rounded-lg p-3 sm:p-4 md:p-6 border border-gray-800">
-            <div className="text-xl sm:text-2xl md:text-3xl mb-1 sm:mb-2">⭐</div>
-            <div className="text-white font-semibold text-xs sm:text-sm md:text-base mb-1">10 años BBC</div>
-            <div className="text-gray-400 text-xs sm:text-sm">Historial comprobado</div>
+            <div className="text-xl sm:text-2xl md:text-3xl mb-1 sm:mb-2">📅</div>
+            <div className="text-white font-semibold text-xs sm:text-sm md:text-base mb-1">31 de mayo</div>
+            <div className="text-gray-400 text-xs sm:text-sm">Disponible</div>
           </div>
           
           <div className="bg-gray-900 rounded-lg p-3 sm:p-4 md:p-6 border border-gray-800">
             <div className="text-xl sm:text-2xl md:text-3xl mb-1 sm:mb-2">💵</div>
-            <div className="text-white font-semibold text-base sm:text-lg md:text-xl mb-1">$7.000.000</div>
+            <div className="text-white font-semibold text-base sm:text-lg md:text-xl mb-1">$10.000.000</div>
             <div className="text-gray-400 text-xs sm:text-sm md:text-base">Canon mensual</div>
           </div>
         </div>
@@ -153,8 +150,8 @@ export default function LocalPage() {
             <div className="flex items-start">
               <span className="text-xl sm:text-2xl mr-3 sm:mr-4 flex-shrink-0">🚿</span>
               <div>
-                <h3 className="text-white font-semibold text-base sm:text-lg mb-1">Baño Privado Incluido</h3>
-                <p className="text-gray-400 text-sm sm:text-base">Baño privado exclusivo para el local, garantizando comodidad y privacidad para clientes y personal. Ideal para establecimientos que requieren servicios higiénicos propios.</p>
+                <h3 className="text-white font-semibold text-base sm:text-lg mb-1">2 baños</h3>
+                <p className="text-gray-400 text-sm sm:text-base">Dos baños para el local, con comodidad y privacidad para clientes y personal. Ideal para establecimientos con flujo de visitantes.</p>
               </div>
             </div>
             
@@ -169,7 +166,7 @@ export default function LocalPage() {
             <div className="flex items-start">
               <span className="text-xl sm:text-2xl mr-3 sm:mr-4 flex-shrink-0">🎯</span>
               <div>
-                <h3 className="text-white font-semibold text-base sm:text-lg mb-1">Frente Amplio de 3.5m</h3>
+                <h3 className="text-white font-semibold text-base sm:text-lg mb-1">Frente Amplio de 5.7m</h3>
                 <p className="text-gray-400 text-sm sm:text-base">Excelente visibilidad y presencia comercial con un frente generoso que permite vitrinas impactantes, señalización destacada y máxima exposición a tu marca.</p>
               </div>
             </div>
@@ -189,7 +186,7 @@ export default function LocalPage() {
                   <p className="text-gray-300 text-sm sm:text-base mb-3">
                     Perfecto para showrooms tecnológicos, tiendas de dispositivos, gaming centers, o espacios de realidad virtual. 
                     La luz trifásica permite alimentar servidores, equipos de alta gama y sistemas de iluminación profesional. 
-                    El espacio de 70m² es ideal para exhibir productos tecnológicos con comodidad y estilo.
+                    El espacio de 122m² es ideal para exhibir productos tecnológicos con comodidad y estilo.
                   </p>
                   <div className="flex flex-wrap gap-2">
                     <span className="px-3 py-1 bg-gray-700 rounded-full text-xs sm:text-sm text-gray-300">Showrooms Tech</span>
@@ -210,7 +207,7 @@ export default function LocalPage() {
                   <p className="text-gray-300 text-sm sm:text-base mb-3">
                     El historial de BBC demuestra que este espacio funciona perfectamente para conceptos gastronómicos de alta calidad. 
                     Con luz trifásica puedes operar equipos de cocina profesional, sistemas de refrigeración y climatización. 
-                    El baño privado y el área externa permiten crear una experiencia completa y exclusiva para tus clientes.
+                    Los 2 baños y el área externa permiten crear una experiencia completa y exclusiva para tus clientes.
                   </p>
                   <div className="flex flex-wrap gap-2">
                     <span className="px-3 py-1 bg-gray-700 rounded-full text-xs sm:text-sm text-gray-300">Cervecerías Artesanales</span>
@@ -232,7 +229,7 @@ export default function LocalPage() {
                   <p className="text-gray-300 text-sm sm:text-base mb-3">
                     Espacio perfecto para minimercados, tiendas especializadas o conceptos de retail innovadores. 
                     La luz trifásica es esencial para sistemas de refrigeración, congeladores y equipos de punto de venta. 
-                    El frente de 3.5m garantiza excelente visibilidad y el baño privado mejora la experiencia del cliente.
+                    El frente de 5.7m garantiza excelente visibilidad y los 2 baños mejoran la experiencia del cliente.
                   </p>
                   <div className="flex flex-wrap gap-2">
                     <span className="px-3 py-1 bg-gray-700 rounded-full text-xs sm:text-sm text-gray-300">Minimercados</span>

@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import Header from '@/app/components/Header';
 import WhatsAppButton from '@/app/components/WhatsAppButton';
 import MeterReadingForm from '@/app/components/servicios/MeterReadingForm';
 import InvoiceUploadForm from '@/app/components/servicios/InvoiceUploadForm';
@@ -154,7 +153,6 @@ export default function AdminServiciosPage() {
   if (loading) {
     return (
       <main className="min-h-screen bg-black">
-        <Header />
         <div className="max-w-7xl mx-auto px-4 py-8">
           <div className="text-white">Cargando...</div>
         </div>
@@ -164,8 +162,6 @@ export default function AdminServiciosPage() {
 
   return (
     <main className="min-h-screen bg-black">
-      <Header />
-
       <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-6 sm:py-8 md:py-12">
         <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-6 sm:mb-8">
           🔧 Administración de Servicios Públicos
