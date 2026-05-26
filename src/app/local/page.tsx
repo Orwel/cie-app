@@ -78,7 +78,7 @@ export default function LocalPage() {
           
           <div className="bg-gray-900 rounded-lg p-3 sm:p-4 md:p-6 border border-gray-800">
             <div className="text-xl sm:text-2xl md:text-3xl mb-1 sm:mb-2">💵</div>
-            <div className="text-white font-semibold text-base sm:text-lg md:text-xl mb-1">$10.000.000</div>
+            <div className="text-white font-semibold text-base sm:text-lg md:text-xl mb-1">$11.000.000</div>
             <div className="text-gray-400 text-xs sm:text-sm md:text-base">Canon mensual</div>
           </div>
         </div>
