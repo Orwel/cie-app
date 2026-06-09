@@ -28,8 +28,9 @@ export default function Reservas() {
             Reserva de Lavadoras
           </h1>
           <p className="text-lg sm:text-xl text-gray-300 max-w-3xl leading-relaxed mb-6 text-justify sm:text-left">
-            Reserva tu espacio de tiempo en nuestras lavadoras disponibles. 
-            Selecciona una lavadora y posteriormente, selecciona un día en el calendario para ver los horarios disponibles y las instrucciones de uso haciendo click en "Ver las instrucciones de uso".
+            Reserva tu espacio de tiempo en la lavadora blanca. 
+            Selecciona un día en el calendario para ver los horarios disponibles y las instrucciones de uso haciendo click en &quot;Ver las instrucciones de uso&quot;.
+            La lavadora gris se encuentra dañada y no está disponible para reservas.
           </p>
         </div>
 
@@ -79,6 +80,10 @@ export default function Reservas() {
             <li className="flex items-start gap-2">
               <span className="text-blue-400">•</span>
               <span>Eres responsable por el uso adecuado de la máquina y cualquier daño potencial</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="text-red-400">•</span>
+              <span>La <strong>lavadora gris</strong> se encuentra <strong>dañada</strong> y no está disponible para reservas</span>
             </li>
           </ul>
         </div>

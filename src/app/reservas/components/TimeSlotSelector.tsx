@@ -132,7 +132,7 @@ export default function TimeSlotSelector({
             <label className="block text-sm font-medium text-gray-300 mb-3">
               Selecciona la lavadora:
             </label>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <button
                 onClick={() => {
                   setSelectedMachine('blanca');
@@ -149,22 +149,11 @@ export default function TimeSlotSelector({
                 <div className="font-semibold text-white">Lavadora Blanca</div>
                 <div className="text-xs text-gray-400 mt-1">Lavadora + Secadora</div>
               </button>
-              <button
-                onClick={() => {
-                  setSelectedMachine('gris');
-                  setStartTime('');
-                  setEndTime('');
-                }}
-                className={`p-4 rounded-lg border-2 transition-all ${
-                  selectedMachine === 'gris'
-                    ? 'border-white bg-white/10'
-                    : 'border-gray-700 bg-gray-800/50 hover:border-gray-600'
-                }`}
-              >
+              <div className="p-4 rounded-lg border-2 border-red-900/50 bg-red-950/20 opacity-75 cursor-not-allowed">
                 <div className="text-2xl mb-2">🩶</div>
-                <div className="font-semibold text-white">Lavadora Gris</div>
-                <div className="text-xs text-gray-400 mt-1">Lava y seca</div>
-              </button>
+                <div className="font-semibold text-gray-400">Lavadora Gris</div>
+                <div className="text-xs text-red-400 mt-1 font-medium">Dañada — No disponible</div>
+              </div>
             </div>
           </div>
 
